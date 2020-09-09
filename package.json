@@ -1,5 +1,5 @@
 {
-  "name": "house-listings-api",
+  "name": "DoggoBottoBE",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/coryortega/house-listings-API.git"
+    "url": "git+https://github.com/coryortega/DoggoBottoBE.git"
   },
   "author": "Cory Ortega",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/coryortega/house-listings-API/issues"
+    "url": "https://github.com/coryortega/DoggoBottoBE/issues"
   },
-  "homepage": "https://github.com/coryortega/house-listings-API#readme",
+  "homepage": "https://github.com/coryortega/DoggoBottoBE#readme",
   "dependencies": {
     "aws-sdk": "^2.745.0",
     "bcryptjs": "^2.4.3",

@@ -21,7 +21,7 @@ server.use("/api/posts", posts);
 // server.use("/api/users", users);
 
 server.get("/", (req, res) => {
-  res.send(`<h1>House Listings API</h1>`);
+  res.send(`<h1>Doggo Botto</h1>`);
 });
 
 module.exports = server;

@@ -27,7 +27,7 @@ router.get("/images/verified", (req, res) => {
           return res.status(200).json(post[i])
         }
       }
-      res.status(400).json({message: `No dogs to be posted.`})
+      res.status(204).json({message: `No dogs to be posted.`})
     })
     .catch(error => {
       res

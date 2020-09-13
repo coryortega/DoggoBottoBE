@@ -15,7 +15,7 @@ router.get("/images", (req, res) => {
     .catch(error => {
       res
         .status(500)
-        .json({ message: `Failed to get Posts, error: ${error}.` });
+        .json({ message: `Failed to get images, error: ${error}.` });
     });
 });
 
@@ -27,12 +27,29 @@ router.get("/images/verified", (req, res) => {
           return res.status(200).json(post[i])
         }
       }
-      res.status(204).json({message: `No dogs to be posted.`})
+      res.status(204).json({message: `No images verified.`})
     })
     .catch(error => {
       res
         .status(500)
-        .json({ message: `Failed to get Posts, error: ${error}.` });
+        .json({ message: `Failed to get images, error: ${error}.` });
+    });
+});
+
+router.get("/images/posted", (req, res) => {
+  Posts.find()
+    .then(post => {
+      for(let i = post.length; i >=0 ; i--){
+        if(post[i].posted == true){
+          return res.status(200).json(post[i])
+        }
+      }
+      res.status(204).json({message: `No new images  to update.`})
+    })
+    .catch(error => {
+      res
+        .status(500)
+        .json({ message: `Failed to get image, error: ${error}.` });
     });
 });
 

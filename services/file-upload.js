@@ -17,14 +17,15 @@ function afterUpload(req, res, next) {
 const upload = multer({
   storage: multerS3({
     s3: s3,
+    // ContentType: multerS3.AUTO_CONTENT_TYPE,
+    ContentType: 'image/jpeg',
     acl: 'public-read',
     bucket: 'doggobotto',
-    ContentType: multerS3.AUTO_CONTENT_TYPE,
     metadata: function (req, file, cb) {
-      cb(null, {fieldName: 'TESTING_META_DATA'});
+      cb(null, {filename: 'TESTING_META_DATA'});
     },
     key: function (req, file, cb) {
-      cb(null, Date.now().toString())
+      cb(null, Date.now().toString()+'.jpg')
     }
   })
 })

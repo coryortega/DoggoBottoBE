@@ -12,6 +12,8 @@ exports.up = function(knex) {
         tbl
           .string("username")
         tbl
+          .string("twitter_id")
+        tbl
           .text("img")
         tbl
           .boolean("posted")

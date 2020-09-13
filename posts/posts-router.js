@@ -80,8 +80,8 @@ router.post("/", (req, res) => {
 
 router.put("/images/:id", (req, res) => {
   const { id } = req.params;
-  const { verified, twitter_id } = req.body;
-  const changes = { id, verified, twitter_id };
+  const { verified, twitter_id, posted } = req.body;
+  const changes = { id, verified, posted, twitter_id };
 
   Posts.findById(id)
     .then(post => {

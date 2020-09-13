@@ -17,8 +17,9 @@ function afterUpload(req, res, next) {
 const upload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: 'doggobotto',
     acl: 'public-read',
+    bucket: 'doggobotto',
+    ContentType: multerS3.AUTO_CONTENT_TYPE,
     metadata: function (req, file, cb) {
       cb(null, {fieldName: 'TESTING_META_DATA'});
     },

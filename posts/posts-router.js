@@ -39,12 +39,12 @@ router.get("/images/verified", (req, res) => {
 router.get("/images/posted", (req, res) => {
   Posts.find()
     .then(post => {
-      for(let i = post.length; i >=0 ; i--){
+      for(let i = post.length; i >= 0; i--){
         if(post[i].posted == true){
           return res.status(200).json(post[i])
         }
       }
-      res.status(204).json({message: `No new images  to update.`})
+      res.status(204).json({message: `No new images to update.`})
     })
     .catch(error => {
       res
@@ -71,7 +71,7 @@ router.post('/image-upload', function (req, res) {
       if(err){
         return res.json({'error': err})
       } else {
-        await db.insert({name: req.body.name, img: req.file.location, posted: false, verified: null, key: req.file.key, caption: req.body.caption}).into('posts');
+        await db.insert({name: req.body.name, img: req.file.location, posted: false, verified: null, key: req.file.key, caption: req.body.caption, username: req.body.username}).into('posts');
         return res.json({'imageUrl': req.file.location, 'name': req.body.name, "key": req.file.key})
       }
     });

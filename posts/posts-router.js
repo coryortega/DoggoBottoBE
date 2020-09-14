@@ -39,7 +39,8 @@ router.get("/images/verified", (req, res) => {
 router.get("/images/posted", (req, res) => {
   Posts.find()
     .then(post => {
-      for(let i = post.length; i >= 0; i--){
+      post.reverse();
+      for(let i = 0; i < post.length; i++){
         if(post[i].posted == true){
           return res.status(200).json(post[i])
         }

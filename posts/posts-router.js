@@ -2,6 +2,7 @@ const express = require("express");
 const Posts = require("./posts-model");
 const knexfile = require("../knexfile");
 const router = express.Router();
+const path = require('path');
 
 const upload = require('../services/file-upload');
 
@@ -73,7 +74,7 @@ router.post('/image-upload', function (req, res) {
         return res.json({'error': err})
       } else {
         await db.insert({name: req.body.name, img: req.file.location, posted: false, verified: null, key: req.file.key, caption: req.body.caption, username: req.body.username}).into('posts');
-        return res.json({'imageUrl': req.file.location, 'name': req.body.name, "key": req.file.key})
+        return res.json({'imageUrl': req.file.location, 'name': req.body.name || "nvm", "key": req.file.key, "data": req.file})
       }
     });
 

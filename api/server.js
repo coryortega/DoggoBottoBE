@@ -22,7 +22,7 @@ server.use(cors());
 
 server.use("/api/auth", authLogReg);
 server.use("/api/posts", posts);
-server.use("api/admin", admin)
+server.use("api/admin", authenticate, admin);
 // server.use("/api/users", users);
 
 server.get("/", (req, res) => {

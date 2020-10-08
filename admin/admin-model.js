@@ -5,7 +5,7 @@ module.exports = {
   findBy,
   add,
   findById,
-  remove
+  remove,
 };
 
 function find() {
@@ -13,29 +13,22 @@ function find() {
 }
 
 function findBy(user) {
-  return db("admins")
-    .select("id", "username", "password")
-    .where(user);
+  return db("admins").select("id", "username", "password").where(user);
 }
 
 function add(user) {
   return db("admins")
     .insert(user, "id")
-    .then(ids => {
+    .then((ids) => {
       const [id] = ids;
       return findById(id);
     });
 }
 
 function findById(id) {
-  return db("admins")
-    .select("id", "username", "email")
-    .where({ id })
-    .first();
+  return db("admins").select("id", "username", "email").where({ id }).first();
 }
 
 function remove(id) {
-  return db("admins")
-    .where({ id })
-    .del();
+  return db("admins").where({ id }).del();
 }

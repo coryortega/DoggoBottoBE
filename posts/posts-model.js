@@ -11,7 +11,6 @@ module.exports = {
 
 function find() {
   return db("posts")
-  // .select("id", "post_url", "post_description", "title", "subreddits");
 }
 
 function findById(id) {

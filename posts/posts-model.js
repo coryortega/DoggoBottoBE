@@ -4,6 +4,7 @@ module.exports = {
   find,
   findById,
   findByPost,
+  findVerified,
   add,
   remove,
   update
@@ -11,6 +12,10 @@ module.exports = {
 
 function find() {
   return db("posts")
+}
+
+function findVerified() {
+  return db("verified")
 }
 
 function findById(id) {

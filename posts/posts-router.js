@@ -19,15 +19,19 @@ router.get("/images", authenticate, (req, res) => {
 });
 
 router.get("/images/verified", (req, res) => {
-  Posts.find()
+  Posts.findVerified()
     .then((post) => {
-      for (let i = 0; i < post.length; i++) {
-        if (post[i].posted == false && post[i].verified == true) {
-          return res.status(200).json(post[i]);
-        }
-      }
-      res.status(204).json({ message: `No images verified.` });
+      return res.status(200).json(post)
     })
+  // Posts.find()
+  //   .then((post) => {
+  //     for (let i = 0; i < post.length; i++) {
+  //       if (post[i].posted == false && post[i].verified == true) {
+  //         return res.status(200).json(post[i]);
+  //       }
+  //     }
+  //     res.status(204).json({ message: `No images verified.` });
+  //   })
     .catch((error) => {
       res
         .status(500)
@@ -52,15 +56,15 @@ router.get("/images/posted", (req, res) => {
     });
 });
 
-router.post("/upload", async (req, res) => {
-  const { name, data } = req.body;
-  if (name && data) {
-    await db.insert({ name: name, img: data }).into("posts");
-    res.sendStatus(200);
-  } else {
-    res.sendStatus(400);
-  }
-});
+// router.post("/upload", async (req, res) => {
+//   const { name, data } = req.body;
+//   if (name && data) {
+//     await db.insert({ name: name, img: data }).into("posts");
+//     res.sendStatus(200);
+//   } else {
+//     res.sendStatus(400);
+//   }
+// });
 
 const singleUpload = upload.single("image");
 
@@ -73,8 +77,7 @@ router.post("/image-upload", function (req, res) {
         .insert({
           name: req.body.name,
           img: req.file.location,
-          posted: false,
-          verified: null,
+          verified: false,
           key: req.file.key,
           caption: req.body.caption,
           username: req.body.username,
@@ -90,24 +93,24 @@ router.post("/image-upload", function (req, res) {
   });
 });
 
-router.post("/", (req, res) => {
-  const postData = req.body;
-  console.log(req.body);
-  Posts.add(postData)
-    .then((post) => {
-      res.status(201).json({ message: "The post was successfully created." });
-    })
-    .catch((error) => {
-      res
-        .status(500)
-        .json({ message: `Failed to create new post, error: ${error}.` });
-    });
-});
+// router.post("/", (req, res) => {
+//   const postData = req.body;
+//   console.log(req.body);
+//   Posts.add(postData)
+//     .then((post) => {
+//       res.status(201).json({ message: "The post was successfully created." });
+//     })
+//     .catch((error) => {
+//       res
+//         .status(500)
+//         .json({ message: `Failed to create new post, error: ${error}.` });
+//     });
+// });
 
 router.put("/images/:id", authenticate, (req, res) => {
   const { id } = req.params;
   const { verified, twitter_id, posted } = req.body;
-  const changes = { id, verified, posted, twitter_id };
+  const changes = { id, verified, twitter_id, posted };
 
   Posts.findById(id)
     .then((post) => {

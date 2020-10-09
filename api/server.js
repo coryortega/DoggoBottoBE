@@ -5,7 +5,7 @@ const cors = require("cors");
 const bodyParser = require('body-parser')
 
 const posts = require("../posts/posts-router");
-const admin = require("../admin-router");
+const admin = require("../admin/admin-router");
 const authLogReg = require("../auth/auth-log-reg");
 const authenticate = require("../auth/auth-middleware");
 

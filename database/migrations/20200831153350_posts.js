@@ -19,6 +19,8 @@ exports.up = function(knex) {
           .boolean("posted")
         tbl
           .boolean("verified")
+        tbl
+          .boolean("recieve_dm")
       });
 };
 

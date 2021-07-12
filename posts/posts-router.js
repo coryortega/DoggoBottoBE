@@ -7,6 +7,8 @@ const upload = require("../services/file-upload");
 
 const db = require("../database/dbConfig");
 
+router.options("/images")
+
 router.get("/images", (req, res) => {
   Posts.find()
     .then((post) => {
